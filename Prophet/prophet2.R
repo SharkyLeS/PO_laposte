@@ -29,6 +29,7 @@ cbns <- unique(data2$CBN)
 predictions <- data.frame(matrix(ncol = nb_intervals , nrow = length(cbns)))
 names_given <- FALSE
 
+r <- 1 
 #for (cbn in cbns){
 
 #y <- subset(data2$CBN, data2$CBN==cbns[5])
@@ -107,6 +108,7 @@ names_given <- TRUE
 }
 #Adding line corresponding to prediction for the cbn
 predictions[r,] = forecast$yhat[(length(forecast$yhat)-nb_intervals+1):length(forecast$yhat)]
+r = r+1
 
 #}
 
