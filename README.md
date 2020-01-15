@@ -10,9 +10,28 @@ Utilisation de la méthode Prophet. TO DO
 
 Utilisation de réseaux neuronnes profonds à travers d'un LSTM
 
+
+
+## Nettoyage des données
+
+Le script utilisé est **data_processing.py**. Les inputs sont les suivantes:
+
+- *dir_path* : chemin vers le dossier contenant les données brutes (.fichiers xlsx)
+- *out_path* : chemin output pour sauvegarder les fichier nettoyés
+
+Example de commande
+
+`python data_processing.py "row_data/" "data_processed.csv"`
+
+
+
+## Génération des inputs
+
+
+
 # Auteurs
 
-* **Gauthier Gris** : travail sur le LSTM
+* **Gauthier Gris** : travail sur le LSTM - nettoyage des données - génération des inputs
 * **Quentin Depoortere** : travail sur le LSTM
 * **Etienne Raveau** : travail sur Prohpet
 * **Laura Mabru** : travail sur Prophet
