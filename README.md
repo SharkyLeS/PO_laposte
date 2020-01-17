@@ -33,10 +33,11 @@ Le script utilisé est **input_generation.py**. Les inputs sont les suivantes
 * *step_group* : pas de temps pour grouper les lignes
 * delta_train : intervalle de temps pour chaque instance d'entrainement
 * delta_prediction : intervalle de temps sur lequel la prédiction doit être faite
+* window_slide : temps de window slide pour chaque nouvelle inpute
 
 Example de commande
 
-`python input_generation.py "data_processed.csv" "2min" "2h" "30min"`
+`python input_generation.py "data_processed.csv" "2min" "2h" "30min" "2h"` 
 
 # Auteurs
 
