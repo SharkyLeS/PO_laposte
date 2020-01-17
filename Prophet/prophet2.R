@@ -30,10 +30,10 @@ predictions <- data.frame(matrix(ncol = nb_intervals , nrow = length(cbns)))
 names_given <- FALSE
 
 r <- 1 
-#for (cbn in cbns){
+for (cbn in cbns){
 
-#y <- subset(data2$CBN, data2$CBN==cbns[5])
-ds <- as.POSIXct(subset(data2$Date.de.passage, data2$CBN==cbns[5]), format = "%Y-%m-%d %H:%M:%S")
+#y <- subset(data2$CBN, data2$CBN==cbn)
+ds <- as.POSIXct(subset(data2$Date.de.passage, data2$CBN==cbn), format = "%Y-%m-%d %H:%M:%S")
 
 #Aggregating number of letters interval per interval
 count <- rep(0,nb_mois_donnees*30*24/interval)
@@ -94,7 +94,7 @@ forecast <- predict(m, future)
 
 #Save plot to machine
 #png(filename=paste(paste("E://PO_LAPOSTE/PO_laposte-master/plot_CBN_August/", cbn, sep=""), ".png", sep=""))
-plot(m,forecast)
+#plot(m,forecast)
 #dev.off()
 
 #prophet_plot_components(m, forecast)
@@ -103,14 +103,14 @@ plot(m,forecast)
 #Caution : take care of the ds column : dates must be the same for every cbn
 #Creating columns with dates if not already made
 if(!names_given){
-colnames(predictions) <- begin_dates[length(begin_dates)-nb_intervals:length(begin_dates)]
+colnames(predictions) <- forecast$ds[(length(forecast$ds)-length(begin_dates)-nb_intervals+1):length(forecast$ds)]
 names_given <- TRUE
 }
 #Adding line corresponding to prediction for the cbn
 predictions[r,] = forecast$yhat[(length(forecast$yhat)-nb_intervals+1):length(forecast$yhat)]
 r = r+1
 
-#}
+}
 
 #Giving rows of predictions dataframe the name of related cbns
 row.names(predictions) <- cbns
