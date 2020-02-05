@@ -187,7 +187,7 @@ MAPE = mape(pred,real)
 Mape[line] = MAPE
 Accuracy = accuracy(pred,real)
 ACcuracy[line] = Accuracy
-print(c("MAE",MAE,"MSE",MSE,"MAPE",MAPE,"Accuracy",Accuracy))
+#print(c("MAE",MAE,"MSE",MSE,"MAPE",MAPE,"Accuracy",Accuracy))
 }
 
 top_size <- 30
