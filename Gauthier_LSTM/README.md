@@ -39,3 +39,17 @@ Exemple d'utilisation :
 
 `python data_path "5min" out_path`
 
+## Jupyter notebooks
+
+### Notebook *data_grouping.ipynb*
+
+Correspond au script *data_grouping.py*, ce notebook permet de visualiser la DataFrame au cours de l'éxécution du code.
+
+### Notebbook *data_exploration*.ipybn
+
+Résultats de l'exploration des données que nous avons effectuée.
+
+
+
+
+
