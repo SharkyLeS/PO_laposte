@@ -4,19 +4,13 @@ Ce dossier comprant le travail réalisé pour résoudre le problème avec une m�
 
 ## Installation des packages
 
-TODO
+Les scripts requièrent les packages suivants:
 
-pandas
-
-matplotlib
-
-seaborn
-
-keras
-
-Tensorflow
-
-
+* [Pandas](https://pandas.pydata.org/getting_started.html)
+* [Matplotlib](https://matplotlib.org/)
+* [Seaborn](https://seaborn.pydata.org/)
+* [Tensorflow](https://www.tensorflow.org/api_docs/python)
+* [Keras API](https://keras.io/)
 
 ## Nettoyages des données
 
@@ -73,7 +67,7 @@ Le code est à modifier ligne 18 pour ajouter le dossier dans lequel les autres 
 
 Ce script permet de lancer l'entrainement du réseau de neurones. Les différentes information nécessaires sont à rentrer dans les deux dictionnaires *specs* et *compile_specs*. 
 
-Il est possible d'ajouter différents callbacks tels que Tensorboard ou Checkpointer pour sauvegarder les modèles ainsi que les courbes d'apprentissage.
+Il est possible d'ajouter différents callbacks tels que Tensorboard ou Checkpointer pour sauvegarder les modèles ainsi que les courbes d'apprentissage.s
 
 Le script se lance simplement avec la commande suivante:
 
