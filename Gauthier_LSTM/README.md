@@ -55,11 +55,11 @@ Ce script contient une classe appellée **Main** représentant le réseau de neu
 
 Le code est à modifier ligne 23 pour ajouter le dossier dans lequel les autres scripts sont contenus.
 
-### Script *main.py* 
+### Script *model_version.py* 
 
-Ce script contient une classe appellée **Main** représentant le réseau de neurones et toutes les méthodes lui étant reliées : de la récupération des données pour créer le dataset jusqu'à l'affichage des résultats.
+Ce script permet la construction du modèle via les différentes fonctions et des inputs via la méthode *inputs_generation*. Pour ajouter un nouveau modèle il suffit de créer une nouvelle fonction et d'ajouter cette fonction dans le switcher de la fonction *build_model* de la classe **Main**.
 
-Le code est à modifier ligne 23 pour ajouter le dossier dans lequel les autres scripts sont contenus.
+Le code est à modifier ligne 5 pour ajouter le dossier dans lequel les données sont contenus.
 
 
 
