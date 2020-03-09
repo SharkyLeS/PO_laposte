@@ -63,13 +63,21 @@ Le code est à modifier ligne 5 pour ajouter le dossier dans lequel les données
 
 
 
-### Script utils.py* 
+### Script *utils.py* 
 
 Ce script contient différentes méthodes utiles pedant les différentes étapes d'exécution de l'algorithme.
 
 Le code est à modifier ligne 18 pour ajouter le dossier dans lequel les autres scripts sont contenus.
 
+### Script *run_models.py* 
 
+Ce script permet de lancer l'entrainement du réseau de neurones. Les différentes information nécessaires sont à rentrer dans les deux dictionnaires *specs* et *compile_specs*. 
+
+Il est possible d'ajouter différents callbacks tels que Tensorboard ou Checkpointer pour sauvegarder les modèles ainsi que les courbes d'apprentissage.
+
+Le script se lance simplement avec la commande suivante:
+
+`python run_models.py`
 
 ## Jupyter notebooks
 
