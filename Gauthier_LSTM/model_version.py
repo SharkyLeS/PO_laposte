@@ -11,7 +11,7 @@ def model_v1(main):
 
     @return: None
     """
-    print("Model : v1")
+    print("Modèle : v1")
     # Création du modèle
     model = tf.keras.models.Sequential([
         tf.keras.layers.LSTM(200, activation='relu'),
@@ -20,7 +20,7 @@ def model_v1(main):
     main.model = model
 
     # Création des inputs
-    inputs_generation(main)
+    inputs_generation(main, "v1")
 
 
 def model_v2(main):
@@ -30,7 +30,7 @@ def model_v2(main):
 
     @return: None
     """
-    print("Model : v2")
+    print("Modèle : v2")
     # LSTM Inputs (CBN)
     lstm_input = tf.keras.layers.Input(shape=(None, main.specs['nb_cbn']), dtype='float32', name='lstm_input')
     lstm = tf.keras.layers.LSTM(250, activation='relu', return_sequences=True)(lstm_input)
@@ -51,7 +51,7 @@ def model_v2(main):
     main.model = tf.keras.Model(inputs=[lstm_input, cat_input], outputs=[output])
 
     # Création des inputs
-    inputs_generation(main)
+    inputs_generation(main, "v2")
 
 
 def model_v90min(main):
@@ -60,7 +60,7 @@ def model_v90min(main):
 
     @return: None
     """
-    print("Model : v90min")
+    print("Modèle : v90min")
     # LSTM Inputs (CBN)
     lstm_input = tf.keras.layers.Input(shape=(None, main.specs['nb_cbn']), dtype='float32', name='lstm_input')
     lstm = tf.keras.layers.LSTM(250, activation='relu', return_sequences=True)(lstm_input)
@@ -80,7 +80,7 @@ def model_v90min(main):
     main.model = tf.keras.Model(inputs=[lstm_input, cat_input], outputs=[output])
 
     # Création des inputs
-    inputs_generation(main)
+    inputs_generation(main, "v2")
 
 
 def model_v15min(main):
@@ -108,10 +108,10 @@ def model_v15min(main):
     main.model = tf.keras.Model(inputs=[lstm_input, cat_input], outputs=[output])
 
     # Création des inputs
-    inputs_generation(main)
+    inputs_generation(main, "v2")
 
 
-def inputs_generation(main):
+def inputs_generation(main, version):
     '''
     Céation des inputs et mise à jour des attributs de l'objet main
 
@@ -124,9 +124,15 @@ def inputs_generation(main):
     print("Utilisation du dataframe : {}".format(df_path))
 
     # Création des inputs
-    main.data['train'], main.data['val'], main.data['test'], dates = windowed_dataset_v1(dataframe,
-                                                                                         main.specs['nb_cbn'],
-                                                                                         **main.data_specs)
+    if version == 'v1':
+        (main.data['train'], main.data['val'], main.data['test'],
+         main.data['dates_train'], main.data['dates_val'],
+         main.data['dates_test']) = windowed_dataset_v1(dataframe, main.specs['nb_cbn'], **main.data_specs)
+
+    if version == 'v2':
+        (main.data['train'], main.data['val'], main.data['test'],
+         main.data['dates_train'], main.data['dates_val'],
+         main.data['dates_test']) = windowed_dataset_v2(dataframe, main.specs['nb_cbn'],  **main.data_specs)
 
     # Ajout du nombre d'étapes par epoch pour les set d'entrainement et de validation
     main.data['steps_per_epoch'], main.data['validation_steps'] = count_steps(main)
