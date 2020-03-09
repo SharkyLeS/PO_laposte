@@ -32,8 +32,10 @@ Ce script permet de grouper les données nettoyées pour un pas de temps donné.
 Inputs : 
 
 1. *data_path* : chemin vers les données nettoyées
-2. *step_grou* : Intervall de temps sur lequel regrouper les données en min
-3. *out_path* : chemin de sauvegarde des données groupées
+2. *step_grou* : intervall de temps sur lequel regrouper les données en min
+3. *out_path* : dossier de sauvegarde des données groupées
+
+Les données sont sauvegardées dans le dossier *out_path* sous le format csv, ce fichier est nommé data_processed_{step_group}_257.csv. Le 257 correspond aux nombres de CBN contenus dans ce fichier, il est possible de créer d'autres fichiers de manière ad hoc avec un nombre de CBN différent. Le fait de nommer les fichiers ainsi permet au script créant les réseaux de neronnes d'automaquement récupérer cette valeur.
 
 Exemple d'utilisation :
 

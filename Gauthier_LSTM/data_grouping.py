@@ -10,7 +10,7 @@ import sys
 # Paramètres
 data_path = sys.argv[1]  # Chemin vers les données nettoyées
 step_group = sys.argv[2]  # Intervall de temps sur lequel regrouper les données en min
-out_path = sys.argv[3]  # Chemin de sauvegarde des données groupées
+out_path = sys.argv[3]  # Dossier de sauvegarde des données groupées
 
 # Chargement des données nettoyées dans un DataFrame
 dataFrame = pd.read_csv(data_path)
@@ -60,4 +60,4 @@ grouped_dataFrame = pd.concat([grouped_dataFrame, dfDummies_weekday, dfDummies_m
 grouped_dataFrame.drop(columns=['month', 'weekday', 'hour'], inplace=True)
 
 # Sauvegarde des données
-grouped_dataFrame.to_csv(out_path, index=False)
+grouped_dataFrame.to_csv(os.path.join(out_path, "data_processed_{}_257".format(step_group)), index=False)
