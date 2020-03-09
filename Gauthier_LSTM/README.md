@@ -63,6 +63,14 @@ Le code est à modifier ligne 5 pour ajouter le dossier dans lequel les données
 
 
 
+### Script utils.py* 
+
+Ce script contient différentes méthodes utiles pedant les différentes étapes d'exécution de l'algorithme.
+
+Le code est à modifier ligne 18 pour ajouter le dossier dans lequel les autres scripts sont contenus.
+
+
+
 ## Jupyter notebooks
 
 ### Notebook *data_grouping.ipynb*
