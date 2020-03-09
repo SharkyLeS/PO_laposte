@@ -114,6 +114,9 @@ def model_v15min(main):
 def inputs_generation(main, version):
     '''
     Céation des inputs et mise à jour des attributs de l'objet main
+    @param main: Main
+    @param version: str
+        "v1" si toutes les features sont regroupées. "v2" si elles sont séparées (CBN puis Date)
 
     @return: None
     '''
