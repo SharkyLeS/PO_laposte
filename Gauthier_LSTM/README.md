@@ -8,6 +8,14 @@ TODO
 
 pandas
 
+matplotlib
+
+seaborn
+
+keras
+
+Tensorflow
+
 
 
 ## Nettoyages des données
@@ -40,6 +48,20 @@ Les données sont sauvegardées dans le dossier *out_path* sous le format csv, c
 Exemple d'utilisation :
 
 `python data_path "5min" out_path`
+
+### Script *main.py* 
+
+Ce script contient une classe appellée **Main** représentant le réseau de neurones et toutes les méthodes lui étant reliées : de la récupération des données pour créer le dataset jusqu'à l'affichage des résultats.
+
+Le code est à modifier ligne 23 pour ajouter le dossier dans lequel les autres scripts sont contenus.
+
+### Script *main.py* 
+
+Ce script contient une classe appellée **Main** représentant le réseau de neurones et toutes les méthodes lui étant reliées : de la récupération des données pour créer le dataset jusqu'à l'affichage des résultats.
+
+Le code est à modifier ligne 23 pour ajouter le dossier dans lequel les autres scripts sont contenus.
+
+
 
 ## Jupyter notebooks
 
