@@ -1,14 +1,14 @@
 # PO_laposte
 
-Project d'option de dernière année (IMT Atlantique - Campus Nanets). Le but est de prédir à un instant donné les 10 meilleures destinations CE30 d'une PIC afin de maximiser le taux d'utilisation d'un robot trieur.
+Projet d'option de dernière année (IMT Atlantique - Campus Nanets). Le but est de prédire à un instant donné les 10 meilleures destinations CE30 d'une PIC afin de maximiser le taux d'utilisation d'un robot trieur.
 
 ## Méthode Prophet
 
-Utilisation de la méthode Prophet. TO DO
+Utilisation de la méthode Prophet.
 
 ## Méthode LSTM
 
-Utilisation de réseaux neuronnes profonds à travers d'un LSTM
+Utilisation de réseaux neuronnes profonds à l'aide d'un LSTM
 
 # Auteurs
 
