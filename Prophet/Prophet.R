@@ -133,3 +133,35 @@ options(digits = 0)			# number of digits to display
 
 ## Save predictions as csv file
 write.csv(predictions, "C:/Travail A3/Projet d'option/Predictions_last_version/prediction_10.csv", row.names = TRUE)
+
+
+## Extracting top cbns at each interval
+
+predicted_data <- predictions
+
+predicted_data[predicted_data<0] <- 0
+pred_row <- as.POSIXct(row.names(predicted_data), format = "%Y-%m-%d %H:%M:%S")
+
+pred <- as.matrix(predicted_data)
+top_size <- 30
+
+top_cbns_predicted <- data.frame(matrix(ncol = top_size , nrow = length(pred_row)))
+
+## Here, order renders the indices of rows corresponding to cbns
+for(inter in 1:length(pred_row)){
+  top_cbns_predicted[inter,] <- order(pred[inter,], decreasing=TRUE)[1:top_size]
+}
+
+row.names(top_cbns_predicted) <- pred_row
+
+## Extracting names of top predicted cbns
+predicted_cbns <- data.frame(matrix(ncol=top_size, nrow=length(pred_row)))
+
+for (i in 1:length(pred_row)){
+  for (j in 1:top_size){
+    predicted_cbns[i,j] <- colnames(pred[top_cbns_predicted[i,j]])
+  }
+}
+
+row.names(predicted_cbns) <- pred_row
+print(predicted_cbns)
