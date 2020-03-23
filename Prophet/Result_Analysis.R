@@ -11,11 +11,67 @@ options(digits = 0)			# number of digits to display
 
 
 prediction <- read.csv("C:/Travail A3/Projet d'option/Predictions_last_version/prediction.csv",sep=",", header=TRUE,dec=".")
-real_data <- read.csv("C:/Travail A3/Projet d'option/Predictions_last_version/real.csv",sep=",", header=TRUE,dec=".")
+newData <- read.csv("C:/Travail A3/Projet d'option/Predictions_last_version/real.csv",sep=",", header=TRUE,dec=".")
 
-Mae = mae(prediction,real_data)
-Mse = mse(prediction,real_data)
-Accuracy = accuracy(prediction,real_data)
+date <- newData$Date.de.passage
+CBN <- newData$CBN
+
+real_data <- data.frame(date,CBN)
+
+# Cleaning and extracting data
+real_data <- subset(real_data, real_data$CBN != 'CAB nul')
+real_data <- subset(real_data, real_data$CBN != 'non trouvé')
+real_data <- subset(real_data, real_data$CBN != 'ligne vide')
+real_data <- subset(real_data, real_data$CBN != 'BRIN A')
+real_data <- subset(real_data, real_data$CBN != 'BRIN B')
+
+
+## Transforming real data for it to match row and columns of predictions
+rdata <- data.frame(matrix(ncol = length(cbns) , nrow = length(pred_row)))
+
+r <- 1
+for (cbn in cbns){
+  
+  ds <- as.POSIXct(subset(real_data$date, real_data$CBN==cbn), format = "%Y-%m-%d %H:%M:%S")
+  count <- rep(0,length(pred_row))
+  
+  ## Counting the number of elements per interval
+  j <- 1
+  i <- 1
+  count[1] <- 0
+  done <- FALSE
+  
+  while(j<length(pred_row)&!done){
+    while(i<=length(ds)){
+      if((ds[i]<=pred_row[j])){
+        #count elements within the interval
+        count[j] <- count[j]+1
+        i = i+1
+      }
+      else{
+        #consider new interval
+        j = j+1
+      }
+    }
+    done <- TRUE
+  }
+  
+  rdata[,r] <- count
+  r <- r+1
+}
+
+colnames(rdata) <- cbns
+row.names(rdata) <- pred_row
+
+
+## Comparison with MAE, MSE, MAPE and Accuracy
+
+real <- as.matrix(rdata)
+pred <- as.matrix(prediction)
+
+Mae = mae(pred,real)
+Mse = mse(pred,real)
+Accuracy = accuracy(pred,real)
 
 print(Mae, Mse, Accuracy)
 
@@ -23,7 +79,7 @@ print(Mae, Mse, Accuracy)
 
 ##COMPARE TOP CBNS WITH REAL DATA
 
-pred_row <- prediction$X
+pred_row <- pred$X
 top_size <- 10 ## Number of top cbns to extract
 
 top_cbns_predicted <- data.frame(matrix(ncol = top_size , nrow = length(pred_row)))
@@ -34,8 +90,8 @@ nb_tops <- rep(0, length(pred_row))
 
 ## Here, order renders the indices of rows corresponding to cbns
 for(inter in 1:length(pred_row)){
-  top_cbns_predicted[inter,] <- order(prediction[inter,], decreasing=TRUE)[1:top_size]
-  top_cbns[inter,] <- order(real_data[inter,], decreasing=TRUE)[1:top_size]
+  top_cbns_predicted[inter,] <- order(pred[inter,], decreasing=TRUE)[1:top_size]
+  top_cbns[inter,] <- order(real[inter,], decreasing=TRUE)[1:top_size]
   nb_tops[inter] <- length(intersect(as.numeric(top_cbns[inter,]), as.numeric(top_cbns_predicted[inter,])))
 }
 
@@ -61,14 +117,14 @@ real_cbns <- data.frame(matrix(ncol=top_size, nrow=length(pred_row)))
 
 for (i in 1:length(pred_row)){
   for (j in 1:top_size){
-    predicted_cbns[i,j] <- colnames(prediction[top_cbns_predicted[i,j]])
+    predicted_cbns[i,j] <- colnames(pred[top_cbns_predicted[i,j]])
   }
 }
 
 
 for (i in 1:length(pred_row)){
   for (j in 1:top_size){
-    real_cbns[i,j] <- colnames(real_data[top_cbns[i,j]])
+    real_cbns[i,j] <- colnames(real[top_cbns[i,j]])
   }
 }
 
